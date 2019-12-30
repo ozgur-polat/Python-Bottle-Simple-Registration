@@ -1,0 +1,2 @@
+2019-12-30 20:17:04,814 INFO     None GET http://localhost:63700/ 127.0.0.1
+2019-12-30 20:17:05,064 INFO     False GET http://localhost:63700/login 127.0.0.1
