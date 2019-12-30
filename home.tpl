@@ -18,8 +18,17 @@
 		<div class="content">
 			<h2>Home Page</h2>
 			<p>Welcome back, {{ name }}!</p>
-			Hello {{name}} <br>
-			MENU COMES HERE
+			<p>You are authorized to perform operations below.
+			<div>
+				<table>
+					<tr>
+						<td><a href="#">Menu Item 1</a></td>
+					</tr>
+					<tr>
+						<td><a href="#">Menu Item 2</a></td>
+					</tr>
+				</table>
+			</div>
 		</div>
 	</body>
 </html>
