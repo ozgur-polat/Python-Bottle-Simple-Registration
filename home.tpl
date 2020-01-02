@@ -17,12 +17,12 @@
 		</nav>
 		<div class="content">
 			<h2>Home Page</h2>
-			<p>Welcome back, {{ name }}!</p>
-			<p>You are authorized to perform operations below.
+			<p>Welcome back, {{ name }}!<br>
+			You are authorized to perform operations below.</p>
 			<div>
 				<table>
 					<tr>
-						<td><a href="#">Menu Item 1</a></td>
+						<td><a href="addPersonnel">Add New Personnel</a></td>
 					</tr>
 					<tr>
 						<td><a href="#">Menu Item 2</a></td>
