@@ -32,55 +32,58 @@
 					</tr>
 				</table>
 			</div>
-
-
-			% 	if(loggedUser[0][8]=="e"):
-			%		execExist = 0
-			%		adminExist = 0
-			%		fieldExist = 0
-			%		for i in topSalaries
-			%			if(i[8]=="e"):
-			%				execExist = 1
-			%			if(i[8]=="a"):
-			%				adminExist = 1
-			%			if(i[8]=="f"):
-			%				fieldExist = 1 
+			% execExist = 0
+			% adminExist = 0
+			% fieldExist = 0
+			% if(loggedUser[0][8]=="e"):
+			%	for i in topSalaries:
+			%		if(i[2]=="e"):
+			%			execExist=1
+			%		end
+			%		if(i[2]=="a"):
+			%			adminExist=1
+			%		end
+			%		if(i[2]=="f"):
+			%			fieldExist=1 
+			%		end
+			% 	end
+			% end
 			
-
+			% if(loggedUser[0][8]=="e"):
 				<div>
 					<p><b>Statistical Overview</b></p>
 					<p>Top Paid Employees</p>
-					<table>
+					<table border="1">
 						<tr>
 							<th></th>
 							<th>Name</th>
 							<th>Surname</th>
 							<th>Salary</th>
 						</tr>
-						%if (execExist==1)
+						%if(execExist==1):
 							<tr>
 								<td>Among Executives</td>
-								<td>{{topSalaries[0][0]}}</td>
-								<td>{{topAdministrative[0][0]}}</td>
-								<td>{{topField[0][0]}}</td>
+								<td>{{topSalaries[1][0]}}</td>
+								<td>{{topSalaries[1][1]}}</td>
+								<td>{{topSalaries[1][3]}}</td>
 							</tr>
-						% end
-						%if (adminExist==1)
+						%end
+						%if(adminExist==1):
 							<tr>
 								<td>Among Administrative Personnel</td>
-								<td>{{topExecutive[1]}}</td>
-								<td>{{topAdministrative[1]}}</td>
-								<td>{{topField[1]}}</td>
+								<td>{{topSalaries[0][0]}}</td>
+								<td>{{topSalaries[0][1]}}</td>
+								<td>{{topSalaries[0][3]}}</td>
 							</tr>
-						% end
-						%if (fieldExist==1)
+						%end
+						%if(fieldExist==1):
 							<tr>
 								<td>Among Field Personnel</td>
-								<td>{{topExecutive[0]}}</td>
-								<td>{{topAdministrative[0]}}</td>
-								<td>{{topField[0]}}</td>
+								<td>{{topSalaries[2][0]}}</td>
+								<td>{{topSalaries[2][1]}}</td>
+								<td>{{topSalaries[2][3]}}</td>
 							</tr>
-						% end
+						%end
 					</table>
 				</div>
 			% end
