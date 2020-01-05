@@ -10,6 +10,19 @@
 
 			
 			document.addEventListener("DOMContentLoaded", function(event) {
+				document.getElementById('editInfo').style.display = 'none';
+				document.getElementById('editInfoBtn').onchange = function() {
+					document.getElementById('editInfo').style.display = 'block';
+					document.getElementById('initialInfo').style.display = 'none';
+				}
+				document.getElementById('canceEditInfoBtn').onchange = function() {
+					document.getElementById('editInfo').style.display = 'none';
+					document.getElementById('initialInfo').style.display = 'block';
+				}
+
+
+
+
 			    document.getElementById('administrative').style.display = 'none';
 			    document.getElementById('executive').style.display = 'none';
 			    document.getElementById('field').style.display = 'none';
@@ -56,12 +69,18 @@
 			<div>
     				
 				  	<div class="container">
-					    <p>{{msg}}</p>
-					    <p>You can find the information about selected personnel and history of change in rank and salary. You can edit the information by hitting 'Edit' button then 'Save'.</p>
+					    <i>{{msg}}</i>
+					    <p>You can find the information about selected personnel and history of change in rank and salary below it. <br>
+					    	You can edit the information by hitting 'Edit' button then 'Save' or click 'Cancel' to return.
+					    </p>
 					    <hr>
 
 					    <div id="initialInfo">
 					    	<table>
+					    		<tr>
+					    			<td>Personnel ID</td>
+					    			<td>{{selectedPersonnel[0]}}</td>
+					    		</tr>
 					    		<tr>
 					    			<td>Name</td>
 					    			<td>{{selectedPersonnel[1]}}</td>
@@ -113,15 +132,20 @@
 					    			</td>
 					    		</tr>
 					    	<table>
-						    <button id="editInfo">Edit Information</button>
+						    <button id="editInfoBtn">Edit Information</button>
 					  	</div>
 
 
 
 
 
-					    <div id="changeInfo">
+					    <div id="editInfo">
+					    	<button id="canceEditInfoBtn">Cancel</button>
 						    <form action="/addPersonnelPost" method="post">
+						    	<label for="name"><b>Personnel ID</b></label>
+							    <input type="text" name="name" id="name" value="{{selectedPersonnel[0]}}" disabled>
+							    <br>
+
 							    <label for="name"><b>Name</b></label>
 							    <input type="text" name="name" id="name" required>
 							    <br>
@@ -231,7 +255,7 @@
 					  				<th>Salary</th>
 					  			</tr>
 
-					  			%for i in rankSalary
+					  			%for i in rankSalary:
 					  			<tr>
 					  				<td>Rank {{i[0]}}</td>
 					  				<td>{{i[1]}}</td>
