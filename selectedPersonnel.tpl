@@ -11,11 +11,11 @@
 			
 			document.addEventListener("DOMContentLoaded", function(event) {
 				document.getElementById('editInfo').style.display = 'none';
-				document.getElementById('editInfoBtn').onchange = function() {
+				document.getElementById('editInfoBtn').onclick = function() {
 					document.getElementById('editInfo').style.display = 'block';
 					document.getElementById('initialInfo').style.display = 'none';
 				}
-				document.getElementById('canceEditInfoBtn').onchange = function() {
+				document.getElementById('canceEditInfoBtn').onclik = function() {
 					document.getElementById('editInfo').style.display = 'none';
 					document.getElementById('initialInfo').style.display = 'block';
 				}
@@ -143,7 +143,7 @@
 					    	<button id="canceEditInfoBtn">Cancel</button>
 						    <form action="/addPersonnelPost" method="post">
 						    	<label for="name"><b>Personnel ID</b></label>
-							    <input type="text" name="name" id="name" value="{{selectedPersonnel[0]}}" disabled>
+							    <input type="text" name="name" id="pid" value="{{selectedPersonnel[0]}}" disabled>
 							    <br>
 
 							    <label for="name"><b>Name</b></label>
@@ -241,12 +241,12 @@
 
 
 
-							    <hr>
 
 							    <button type="submit">Save Changes</button>
 						    </form>
 					  	</div>
 
+							    <hr>
 					  	<div>
 					  		<p>Rank - Salary History</p>
 					  		<table>
