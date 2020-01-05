@@ -75,7 +75,7 @@
 					    <br>
 
 					    <label for="zipCode"><b>Zip Code</b></label>
-						<select id = "zipCode" name="zipCode">
+						<select id = "zipCode" name="zipCode" required>
 							% for item in zipList:
 								<option value = "{{item[0]}}">{{item[0]}}</option>
 							% end
@@ -83,16 +83,26 @@
 			            <br>
 
 			            <label for="salary"><b>Salary</b></label>
-				    	<input type="number" name="salary" id="salary">
+				    	<input type="number" name="salary" id="salary" required>
 			            <br>
 
 			            <label for="jobStartDate"><b>Job Start Date</b></label>
-			            <input type="date" name="jobStartDate" id="jobStartDate">
+			            <input type="date" name="jobStartDate" id="jobStartDate" required>
 			            <br>
 
 					    <label for="password"><b>Password</b></label>
 					    <input type="password" name="password" id="password" required>
 					    <br>
+
+					    <label for="rank"><b>Rank</b></label>
+					    <select id="rank" name="rank" required>
+					    	<option value="1">Rank 1</option>
+					    	<option value="2">Rank 2</option>
+					    	<option value="3">Rank 3</option>
+					    	<option value="4">Rank 4</option>
+					    	<option value="5">Rank 5</option>
+					    </select>
+			            <br>
 
 
 					    <label for="personnelType"><b>Personnel Type</b></label>

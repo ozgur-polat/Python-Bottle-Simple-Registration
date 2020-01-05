@@ -52,107 +52,198 @@
 			</div>
 		</nav>
 		<div class="content">
-			<h2>Add New Personnel</h2>
+			<h2>Selected Personnel</h2>
 			<div>
-    				<form action="/addPersonnelPost" method="post">
-					  <div class="container">
+    				
+				  	<div class="container">
 					    <p>{{msg}}</p>
-					    <p>Please fill the details of new personnel.</p>
+					    <p>You can find the information about selected personnel and history of change in rank and salary. You can edit the information by hitting 'Edit' button then 'Save'.</p>
 					    <hr>
 
-
-
-					    <label for="name"><b>Name</b></label>
-					    <input type="text" name="name" id="name" required>
-					    <br>
-
-					    <label for="surname"><b>Surname</b></label>
-					    <input type="text" name="surname" id="surname" required>
-					    <br>
-
-					    <label for="email"><b>E-mail</b></label>
-					    <input type="text" name="email" id="email" required>
-					    <br>
-
-					    <label for="zipCode"><b>Zip Code</b></label>
-						<select id = "zipCode" name="zipCode">
-							% for item in zipList:
-								<option value = "{{item[0]}}">{{item[0]}}</option>
-							% end
-			            </select>
-			            <br>
-
-			            <label for="salary"><b>Salary</b></label>
-				    	<input type="number" name="salary" id="salary">
-			            <br>
-
-			            <label for="jobStartDate"><b>Job Start Date</b></label>
-			            <input type="date" name="jobStartDate" id="jobStartDate">
-			            <br>
-
-					    <label for="password"><b>Password</b></label>
-					    <input type="password" name="password" id="password" required>
-					    <br>
-
-
-					    <label for="personnelType"><b>Personnel Type</b></label>
-					    <select id = "personnelType" name = "personnelType" required>
-					    	<option disabled selected value>Please select</option>
-			               	<option value = "a">Administrative</option>
-			               	<option value = "e">Executive</option>
-			               	<option value = "f">Field</option>
-			            </select>
-			            <br>
-
-
-		            	<div id="administrative">
-		            		<label for="expense"><b>Expense Limit (in PLN)</b></label>
-					    	<input type="number" name="expense" id="expense">
-					    	<br>
-
-					    	<label for="privateHealthInsurance"><b>Private Health Insurance</b></label>
-					    	<select id = "privateHealthInsurance" name = "privateHealthInsurance">
-				               <option value = "0">No</option>
-				               <option value = "1">Yes</option>
-				            </select>
-
-		            	</div>
-		            	
-
-
-
-		            	<div id="executive">
-		            		<label for="premiumRatio"><b>Premium Ratio (Between 1-100)</b></label>
-		            		<input type="number" name="premiumRatio" id="premiumRatio" min="1" max="100">
-
-		            	</div>
-		            	
-
-
-
-		            	<div id="field">
-		            		<label for="yearlyBonus"><b>Yearly Bonus (in PLN)</b></label>
-					    	<input type="number" name="yearlyBonus" id="yearlyBonus">
-					    	<br>
-
-					    	<label for="shiftType"><b>Shift Type</b></label>
-					    	<select id = "shiftType" name = "shiftType">
-				               <option value = "0">Day</option>
-				               <option value = "1">Night</option>
-				            </select>
-
-		            	</div>
+					    <div id="initialInfo">
+					    	<table>
+					    		<tr>
+					    			<td>Name</td>
+					    			<td>{{selectedPersonnel[1]}}</td>
+					    		</tr>
+					    		<tr>
+					    			<td>Surname</td>
+					    			<td>{{selectedPersonnel[2]}}</td>
+					    		</tr>
+					    		<tr>
+					    			<td>E-mail</td>
+					    			<td>{{selectedPersonnel[3]}}</td>
+					    		</tr>
+					    		<tr>
+					    			<td>Zip Code</td>
+					    			<td>{{selectedPersonnel[4]}}</td>
+					    		</tr>
+					    		<tr>
+					    			<td>Street</td>
+					    			<td>{{selectedPersonnelAddress[1]}}</td>
+					    		</tr>
+					    		<tr>
+					    			<td>Building</td>
+					    			<td>{{selectedPersonnelAddress[2]}}</td>
+					    		</tr>
+					    		<tr>
+					    			<td>City</td>
+					    			<td>{{selectedPersonnelAddress[3]}}</td>
+					    		</tr>
+					    		<tr>
+					    			<td>Salary</td>
+					    			<td>{{selectedPersonnel[5]}}</td>
+					    		</tr>
+					    		<tr>
+					    			<td>Job Start Date</td>
+					    			<td>{{selectedPersonnel[6]}}</td>
+					    		</tr>
+					    		<tr>
+					    			<td>Personnel Type</td>
+					    			<td>
+					    				%if(selectedPersonnel[8]=="a"):
+					    					Administrative
+					    				%elif(selectedPersonnel[8]=="e"):
+					    					Executive
+					    				%elif(selectedPersonnel[8]=="f"):
+					    					Field
+					    				%else:
+					    					Unknown
+					    				%end
+					    			</td>
+					    		</tr>
+					    	<table>
+						    <button id="editInfo">Edit Information</button>
+					  	</div>
 
 
 
 
 
-					    <hr>
+					    <div id="changeInfo">
+						    <form action="/addPersonnelPost" method="post">
+							    <label for="name"><b>Name</b></label>
+							    <input type="text" name="name" id="name" required>
+							    <br>
 
-					    <button type="submit" class="registerbtn">Add Personnel</button>
-					  </div>
+							    <label for="surname"><b>Surname</b></label>
+							    <input type="text" name="surname" id="surname" required>
+							    <br>
 
-					</form>
+							    <label for="email"><b>E-mail</b></label>
+							    <input type="text" name="email" id="email" required>
+							    <br>
+
+							    <label for="zipCode"><b>Zip Code</b></label>
+								<select id = "zipCode" name="zipCode">
+									% for item in zipList:
+										<option value = "{{item[0]}}">{{item[0]}}</option>
+									% end
+					            </select>
+					            <br>
+
+					            <label for="salary"><b>Salary</b></label>
+						    	<input type="number" name="salary" id="salary">
+					            <br>
+
+					            <label for="jobStartDate"><b>Job Start Date</b></label>
+					            <input type="date" name="jobStartDate" id="jobStartDate">
+					            <br>
+
+							    <label for="password"><b>Password</b></label>
+							    <input type="password" name="password" id="password" required>
+							    <br>
+
+							    <label for="rank"><b>Rank</b></label>
+							    <select id="rank" name="rank">
+							    	<option value="1">Rank 1</option>
+							    	<option value="2">Rank 2</option>
+							    	<option value="3">Rank 3</option>
+							    	<option value="4">Rank 4</option>
+							    	<option value="5">Rank 5</option>
+							    </select>
+					            <br>
+
+
+							    <label for="personnelType"><b>Personnel Type</b></label>
+							    <select id = "personnelType" name = "personnelType" required>
+							    	<option disabled selected value>Please select</option>
+					               	<option value = "a">Administrative</option>
+					               	<option value = "e">Executive</option>
+					               	<option value = "f">Field</option>
+					            </select>
+					            <br>
+
+
+				            	<div id="administrative">
+				            		<label for="expense"><b>Expense Limit (in PLN)</b></label>
+							    	<input type="number" name="expense" id="expense">
+							    	<br>
+
+							    	<label for="privateHealthInsurance"><b>Private Health Insurance</b></label>
+							    	<select id = "privateHealthInsurance" name = "privateHealthInsurance">
+						               <option value = "0">No</option>
+						               <option value = "1">Yes</option>
+						            </select>
+
+				            	</div>
+				            	
+
+
+
+				            	<div id="executive">
+				            		<label for="premiumRatio"><b>Premium Ratio (Between 1-100)</b></label>
+				            		<input type="number" name="premiumRatio" id="premiumRatio" min="1" max="100">
+
+				            	</div>
+				            	
+
+
+
+				            	<div id="field">
+				            		<label for="yearlyBonus"><b>Yearly Bonus (in PLN)</b></label>
+							    	<input type="number" name="yearlyBonus" id="yearlyBonus">
+							    	<br>
+
+							    	<label for="shiftType"><b>Shift Type</b></label>
+							    	<select id = "shiftType" name = "shiftType">
+						               <option value = "0">Day</option>
+						               <option value = "1">Night</option>
+						            </select>
+
+				            	</div>
+
+
+
+
+
+							    <hr>
+
+							    <button type="submit">Save Changes</button>
+						    </form>
+					  	</div>
+
+					  	<div>
+					  		<p>Rank - Salary History</p>
+					  		<table>
+					  			<tr>
+					  				<th>Rank</th>
+					  				<th>Salary</th>
+					  			</tr>
+
+					  			%for i in rankSalary
+					  			<tr>
+					  				<td>Rank {{i[0]}}</td>
+					  				<td>{{i[1]}}</td>
+					  			</tr>
+					  			%end
+					  		</table>
+					  	</div>
+
+
+				  	</div>
+
+					
 				</div>
 		</div>
 	</body>
