@@ -15,7 +15,7 @@
 					document.getElementById('editInfo').style.display = 'block';
 					document.getElementById('initialInfo').style.display = 'none';
 				}
-				document.getElementById('canceEditInfoBtn').onclik = function() {
+				document.getElementById('canceEditInfoBtn').onclick = function() {
 					document.getElementById('editInfo').style.display = 'none';
 					document.getElementById('initialInfo').style.display = 'block';
 				}
@@ -66,7 +66,6 @@
 		</nav>
 		<div class="content">
 			<h2>Selected Personnel</h2>
-			<div>
     				
 				  	<div class="container">
 					    <i>{{msg}}</i>
@@ -131,7 +130,7 @@
 					    				%end
 					    			</td>
 					    		</tr>
-					    	<table>
+					    	</table>
 						    <button id="editInfoBtn">Edit Information</button>
 					  	</div>
 
@@ -147,19 +146,20 @@
 							    <br>
 
 							    <label for="name"><b>Name</b></label>
-							    <input type="text" name="name" id="name" required>
+							    <input type="text" name="name" id="name" value="{{selectedPersonnel[1]}}" required>
 							    <br>
 
 							    <label for="surname"><b>Surname</b></label>
-							    <input type="text" name="surname" id="surname" required>
+							    <input type="text" name="surname" id="surname" value="{{selectedPersonnel[2]}}" required>
 							    <br>
 
 							    <label for="email"><b>E-mail</b></label>
-							    <input type="text" name="email" id="email" required>
+							    <input type="text" name="email" id="email" value="{{selectedPersonnel[3]}}" required>
 							    <br>
 
 							    <label for="zipCode"><b>Zip Code</b></label>
 								<select id = "zipCode" name="zipCode">
+									<option value="{{selectedPersonnel[4]}}" selected>{{selectedPersonnel[4]}}</option>
 									% for item in zipList:
 										<option value = "{{item[0]}}">{{item[0]}}</option>
 									% end
@@ -167,16 +167,14 @@
 					            <br>
 
 					            <label for="salary"><b>Salary</b></label>
-						    	<input type="number" name="salary" id="salary">
+						    	<input type="number" name="salary" value="{{selectedPersonnel[5]}}" id="salary">
 					            <br>
 
 					            <label for="jobStartDate"><b>Job Start Date</b></label>
-					            <input type="date" name="jobStartDate" id="jobStartDate">
+					            <input type="date" name="jobStartDate" value="{{selectedPersonnel[6]}}" id="jobStartDate">
 					            <br>
 
-							    <label for="password"><b>Password</b></label>
-							    <input type="password" name="password" id="password" required>
-							    <br>
+							    
 
 							    <label for="rank"><b>Rank</b></label>
 							    <select id="rank" name="rank">
@@ -191,7 +189,15 @@
 
 							    <label for="personnelType"><b>Personnel Type</b></label>
 							    <select id = "personnelType" name = "personnelType" required>
-							    	<option disabled selected value>Please select</option>
+							    	%if(selectedPersonnel[8]=="a"):
+				    					<option value="a" selected>Administrative</option>
+				    				%elif(selectedPersonnel[8]=="e"):
+				    					<option value="e" selected>Executive</option>
+				    				%elif(selectedPersonnel[8]=="f"):
+				    					<option value="f" selected>Field</option>
+				    				%else:
+				    					<option disabled selected value>Please select</option>
+				    				%end
 					               	<option value = "a">Administrative</option>
 					               	<option value = "e">Executive</option>
 					               	<option value = "f">Field</option>
@@ -237,11 +243,6 @@
 
 				            	</div>
 
-
-
-
-
-
 							    <button type="submit">Save Changes</button>
 						    </form>
 					  	</div>
@@ -266,9 +267,6 @@
 
 
 				  	</div>
-
-					
-				</div>
 		</div>
 	</body>
 </html>
