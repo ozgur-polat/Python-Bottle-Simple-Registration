@@ -15,17 +15,32 @@
 					document.getElementById('editInfo').style.display = 'block';
 					document.getElementById('initialInfo').style.display = 'none';
 				}
-				document.getElementById('canceEditInfoBtn').onclick = function() {
+				document.getElementById('cancelEditInfoBtn').onclick = function() {
 					document.getElementById('editInfo').style.display = 'none';
 					document.getElementById('initialInfo').style.display = 'block';
 				}
 
 
+				%if(selectedPersonnel[8]=="a"):
+					document.getElementById('administrative').style.display = 'block';
+			    	document.getElementById('executive').style.display = 'none';
+			    	document.getElementById('field').style.display = 'none';
+				%elif(selectedPersonnel[8]=="e"):
+					document.getElementById('administrative').style.display = 'none';
+				    document.getElementById('executive').style.display = 'block';
+				    document.getElementById('field').style.display = 'none';
+				%elif(selectedPersonnel[8]=="f"):
+					document.getElementById('administrative').style.display = 'none';
+				    document.getElementById('executive').style.display = 'none';
+				    document.getElementById('field').style.display = 'block';
+				%else:
+					document.getElementById('administrative').style.display = 'none';
+				    document.getElementById('executive').style.display = 'none';
+				    document.getElementById('field').style.display = 'none';
+				%end
 
 
-			    document.getElementById('administrative').style.display = 'none';
-			    document.getElementById('executive').style.display = 'none';
-			    document.getElementById('field').style.display = 'none';
+			    
 
 				document.getElementById('personnelType').onchange = function() {
 					if(this.options[this.selectedIndex].value == "a"){
@@ -70,7 +85,8 @@
 				  	<div class="container">
 					    <i>{{msg}}</i>
 					    <p>You can find the information about selected personnel and history of change in rank and salary below it. <br>
-					    	You can edit the information by hitting 'Edit' button then 'Save' or click 'Cancel' to return.
+					    	You can edit the information by hitting 'Edit' button then 'Save'.<br>
+					    	Click 'Cancel' to return.
 					    </p>
 					    <hr>
 
@@ -139,10 +155,10 @@
 
 
 					    <div id="editInfo">
-					    	<button id="canceEditInfoBtn">Cancel</button>
-						    <form action="/addPersonnelPost" method="post">
+					    	<button id="cancelEditInfoBtn">Cancel</button>
+						    <form action="/updatePersonnel" method="post">
 						    	<label for="name"><b>Personnel ID</b></label>
-							    <input type="text" name="name" id="pid" value="{{selectedPersonnel[0]}}" disabled>
+							    <input type="text" name="pid" id="pid" value="{{selectedPersonnel[0]}}" disabled>
 							    <br>
 
 							    <label for="name"><b>Name</b></label>
@@ -174,10 +190,13 @@
 					            <input type="date" name="jobStartDate" value="{{selectedPersonnel[6]}}" id="jobStartDate">
 					            <br>
 
-							    
+							    <label for="password"><b>Password</b></label>
+							    <input type="password" name="password" id="password" value="{{selectedPersonnel[7]}}" required>
+							    <br>
 
 							    <label for="rank"><b>Rank</b></label>
 							    <select id="rank" name="rank">
+							    	<option value="{{rankSalary[len(rankSalary)-1][0]}}" selected>Rank {{rankSalary[len(rankSalary)-1][0]}}</option>
 							    	<option value="1">Rank 1</option>
 							    	<option value="2">Rank 2</option>
 							    	<option value="3">Rank 3</option>
