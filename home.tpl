@@ -18,7 +18,7 @@
 		<div class="content">
 			<div>
 				<h2>Home Page</h2>
-				<p>Welcome back, {{ loggedUser[0][2] }}!<br>
+				<p>Welcome back, {{ loggedUser[0][1] }}!<br>
 				You are authorized to perform operations below.</p>
 				<i>{{msg}}</i>
 			</div>
